@@ -36,22 +36,22 @@ for index, line in enumerate(lines):
 # reverse sort the vocab by the values
 vocab = dict(sorted(vocab.items(), key=lambda item: item[1], reverse=True))
 
-print('Number of documents: ', len(documents))
-print('Size of vocab: ', len(vocab))
-print('Sample document: ', documents[0])
+# print('Number of documents: ', len(documents))
+# print('Size of vocab: ', len(vocab))
+# print('Sample document: ', documents[0])
 
 # save the vocab in a text file
-with open('tf-idf/vocab.txt', 'w') as f:
+with open('tf-idf/vocab.txt', 'w',encoding="UTF-8") as f:
     for key in vocab.keys():
         f.write("%s\n" % key)
 
 # save the idf values in a text file
-with open('tf-idf/idf-values.txt', 'w') as f:
+with open('tf-idf/idf-values.txt', 'w',encoding="UTF-8") as f:
     for key in vocab.keys():
         f.write("%s\n" % vocab[key])
 
 # save the documents in a text file
-with open('tf-idf/documents.txt', 'w') as f:
+with open('tf-idf/documents.txt', 'w',encoding="UTF-8") as f:
     for document in documents:
         f.write("%s\n" % ' '.join(document))
 
@@ -65,7 +65,7 @@ for index, document in enumerate(documents):
             inverted_index[token].append(index)
 
 # save the inverted index in a text file
-with open('tf-idf/inverted-index.txt', 'w') as f:
+with open('tf-idf/inverted-index.txt', 'w',encoding="UTF-8") as f:
     for key in inverted_index.keys():
         f.write("%s\n" % key)
         f.write("%s\n" % ' '.join([str(doc_id) for doc_id in inverted_index[key]]))

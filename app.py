@@ -9,9 +9,9 @@ from wtforms import StringField, SubmitField
 
 def load_vocab():
     vocab = {}
-    with open('tf-idf/vocab.txt', "r") as f:
+    with open('tf-idf/vocab.txt', "r",encoding="UTF-8") as f:
         vocab_terms = f.readlines()
-    with open('tf-idf/idf-values.txt', 'r') as f:
+    with open('tf-idf/idf-values.txt', 'r',encoding="UTF-8") as f:
         idf_values = f.readlines()
 
     for (term, idf_value) in zip(vocab_terms, idf_values):
@@ -22,7 +22,7 @@ def load_vocab():
 
 def load_documents():
     # documents = []
-    with open("tf-idf/documents.txt", "r") as f:
+    with open("tf-idf/documents.txt", "r",encoding="UTF-8") as f:
         documents = f.readlines()
     # documents = [document.strip().split() for document in documents]
 
@@ -33,7 +33,7 @@ def load_documents():
 
 def load_inverted_index():
     inverted_index = {}
-    with open('tf-idf/inverted-index.txt', 'r') as f:
+    with open('tf-idf/inverted-index.txt', 'r',encoding="UTF-8") as f:
         inverted_index_terms = f.readlines()
 
     for row_num in range(0, len(inverted_index_terms), 2):
@@ -46,7 +46,7 @@ def load_inverted_index():
 
 
 def load_link_of_qs():
-    with open("Qdata/Qindex.txt", "r") as f:
+    with open("Qdata/Qindex.txt", "r",encoding="UTF-8") as f:
         links = f.readlines()
 
     return links
