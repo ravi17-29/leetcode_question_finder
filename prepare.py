@@ -11,18 +11,10 @@ def find_encoding(fname):
 filename = 'Qdata/index.txt'
 my_encoding = find_encoding(filename)
 
-try:
-    with open(filename, 'r', encoding=my_encoding) as f:
+
+with open(filename, 'r', encoding=my_encoding,errors = "ignore") as f:
         lines = f.readlines()
-except UnicodeDecodeError:
-    alternative_encodings = ["utf-8", "latin-1", "iso-8859-1", "cp1252"]
-    for encoding in alternative_encodings:
-        try:
-            with open(filename, 'r', encoding=encoding) as f:
-                lines = f.readlines()
-            break
-        except UnicodeDecodeError:
-            continue
+
 
 
 def preprocess(document_text):
@@ -51,17 +43,17 @@ vocab = dict(sorted(vocab.items(), key=lambda item: item[1], reverse=True))
 # print('Sample document: ', documents[0])
 
 # save the vocab in a text file
-with open('tf-idf/vocab.txt', 'w') as f:
+with open('tf-idf/vocab.txt','w', encoding= 'utf-8', errors = "ignore") as f:
     for key in vocab.keys():
         f.write("%s\n" % key)
 
 # save the idf values in a text file
-with open('tf-idf/idf-values.txt', 'w') as f:
+with open('tf-idf/idf-values.txt', 'w', encoding= 'utf-8', errors = "ignore") as f:
     for key in vocab.keys():
         f.write("%s\n" % vocab[key])
 
 # save the documents in a text file
-with open('tf-idf/documents.txt', 'w') as f:
+with open('tf-idf/documents.txt', 'w', encoding= 'utf-8', errors = "ignore") as f:
     for document in documents:
         f.write("%s\n" % ' '.join(document))
 
@@ -75,7 +67,7 @@ for index, document in enumerate(documents):
             inverted_index[token].append(index)
 
 # save the inverted index in a text file
-with open('tf-idf/inverted-index.txt', 'w') as f:
+with open('tf-idf/inverted-index.txt', 'w', encoding= 'utf-8', errors = "ignore") as f:
     for key in inverted_index.keys():
         f.write("%s\n" % key)
         f.write("%s\n" % ' '.join([str(doc_id) for doc_id in inverted_index[key]]))
