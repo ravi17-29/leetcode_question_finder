@@ -120,10 +120,26 @@ def calculate_sorted_order_of_documents(query_terms):
     for document_index in potential_documents:
         # print('Document: ', documents[int(document_index)], ' Score: ', potential_documents[document_index])
         ans.append(
-            {"Question Link": Qlink[int(document_index) - 1][:-2], "names": Qname[int(document_index) - 1][5:],
-             ' Score': potential_documents[document_index]})
+            {"Question Link": Qlink[int(document_index) - 1][:-2],
+             "names":re.sub(r'[^a-zA-Z\s]', '', Qname[int(document_index) - 1]),
+             ' Score': potential_documents[document_index]}
+        )
     return ans
 
+# import re
+# question_link = Qlink[int(document_index) - 1][:-2]
+# original_names = Qname[int(document_index) - 1][4:]
+# score = potential_documents[document_index]
+#
+# # Extract alphabetic characters from names
+# alphabetic_names = re.sub(r'[^a-zA-Z]', '', original_names)
+#
+# # Create a dictionary with modified values
+# modified_dict = {
+#     "Question Link": question_link,
+#     "names": alphabetic_names,
+#     "Score": score
+# }
 
 # query_string = input('Enter your query: ')
 # query_terms = [term.lower() for term in query_string.strip().split()]
